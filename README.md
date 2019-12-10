@@ -21,9 +21,9 @@ Create bot by @BotFather. Bot token will look like 123456:ABC-DEF1234ghIkl-zyx57
 ### Get user chat id
 For getting user chat id - write any message to bot or just click Start, and open the following url in your browser:
 
-https://api.telegram.org/bot<token>/getUpdates
+https://api.telegram.org/bot{{token}}/getUpdates
 
-Don't forget replace <token> with your bot token.
+Don't forget replace {{token}} with your bot token.
 
 Enter this token and chat id into plugin settings. That is all, have a nice experience with this plugin!
 
