@@ -1,0 +1,26 @@
+fields:
+    disabled_in_debug:
+        label: Disabled in debug mode
+        comment: If the site working in debug mode, notification will not be sent
+        type: checkbox
+        span: left
+
+    disabled_sending:
+        label: Disabled sending mail to Telegram
+        comment: If checked, email will not be sent
+        type: checkbox
+        span: right
+
+    telegram_token:
+        label: Bot token
+        span: left
+
+    telegram_chat_id:
+        label: User chat id
+        span: right
+
+    admins_to_send:
+        label: Admins to send mail
+        commentAbove: Mail only to this admins will be sent
+        span: auto
+        type: checkboxlist
