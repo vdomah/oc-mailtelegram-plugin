@@ -23,7 +23,7 @@ For getting user chat id - write any message to bot or just click Start, and ope
 
 https://api.telegram.org/bot{{token}}/getUpdates
 
-Don't forget replace {{token}} with your bot token.
+Don't forget to replace {{token}} with your bot token.
 
 Enter this token and chat id into plugin settings. That is all, have a nice experience with this plugin!
 
