@@ -15,7 +15,7 @@ class Plugin extends PluginBase
             'description' => 'Send site mail to your Telegram via bot',
             'author'      => 'Art Gek',
             'icon'        => 'icon-envelope-o',
-            'homepage'    => 'https://github.com/vdomah',
+            'homepage'    => 'https://github.com/vdomah/oc-mailtelegram-plugin',
         ];
     }
 
@@ -40,13 +40,9 @@ class Plugin extends PluginBase
                 }
             }
 
-            $sDoctype = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">';
-            $sHtml = str_replace($sDoctype, '', $obMessage->getBody());
+            $sHtml = $obMessage->getBody();
 
-            $sRegex = '/<style[^>]*>[^<]*<[^>]*>/';
-            $sHtml = preg_replace($sRegex, '', $sHtml);
-
-            $sText = strip_tags($sHtml);
+            $sText = $this->clearHTML($sHtml);
 
             (new Telegram)->sendMessage([
                 'chat_id'    => MailTelegramSettings::instance()->telegram_chat_id,
@@ -56,12 +52,37 @@ class Plugin extends PluginBase
         });
     }
 
+    /**
+     * Убираем пробелы, переносы строк
+     */
+    private function clearHTML($sHtml)
+    {
+        $result = [];
+
+        $sRegex = '/<style[^>]*>[^<]*<[^>]*>/';
+        $sHtml = preg_replace($sRegex, '', $sHtml);
+
+        $sText = strip_tags($sHtml);
+
+        $arText = explode("\n", $sText);
+
+        foreach($arText as $sRow)
+        {
+          $sRow = trim ($sRow);
+          if ($sRow != "") {
+            $result[] = $sRow;
+          }
+        }
+
+        return implode("\n", $result);
+    }
+
     public function registerSettings()
     {
         return [
             'settings' => [
-                'label'       => 'vdomah.mailtelegram::lang.strings.settings_label',
-                'description' => 'vdomah.mailtelegram::lang.strings.settings_desc',
+                'label'       => 'vdomah.mailtelegram::lang.settings.settings_label',
+                'description' => 'vdomah.mailtelegram::lang.settings.settings_desc',
                 'category'    => SettingsManager::CATEGORY_NOTIFICATIONS,
                 'icon'        => 'icon-envelope-o',
                 'class'       => 'Vdomah\MailTelegram\Models\Settings',
