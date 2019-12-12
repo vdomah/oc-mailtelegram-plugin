@@ -44,7 +44,7 @@ class Plugin extends PluginBase
             $sHtml = str_replace($sDoctype, '', $obMessage->getBody());
 
             $sRegex = '/<style[^>]*>[^<]*<[^>]*>/';
-            $sHtml = preg_replace($sRegex, '', $sHtml);
+            $sText = preg_replace('/\s+/', ' ', strip_tags($sHtml));
 
             $sText = strip_tags($sHtml);
 
