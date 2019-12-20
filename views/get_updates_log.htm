@@ -1,4 +1,5 @@
-<?php $sResp = file_get_contents('https://api.telegram.org/bot1052637611:AAEr_JPNHbx9S_NEZjdGq52ye9JTDAiVups/getUpdates'); ?>
+<?php if ($model->telegram_token):?>
+<?php $sResp = file_get_contents('https://api.telegram.org/bot' . $model->telegram_token . '/getUpdates'); ?>
 <?php
 $arResp = json_decode($sResp);
 ?>
@@ -11,3 +12,4 @@ $arResp = json_decode($sResp);
     <div>Date: <?=date('F j, Y H:i:s', $arUpdate->message->date)?></div>
 </div>
 <?php endforeach;?>
+<?php endif;?>
