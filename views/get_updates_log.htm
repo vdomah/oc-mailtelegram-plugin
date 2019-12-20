@@ -1,0 +1,13 @@
+<?php $sResp = file_get_contents('https://api.telegram.org/bot1052637611:AAEr_JPNHbx9S_NEZjdGq52ye9JTDAiVups/getUpdates'); ?>
+<?php
+$arResp = json_decode($sResp);
+?>
+<?php foreach ($arResp->result as $arUpdate): if ($arUpdate->message->from->is_bot) continue;?>
+<div>
+    <div>User or chat ID: <strong><?=$arUpdate->message->chat->id?></strong></div>
+    <div>First name: <?=$arUpdate->message->chat->first_name?></div>
+    <div>Last name: <?=$arUpdate->message->chat->last_name?></div>
+    <div>Username: <?=$arUpdate->message->chat->username?></div>
+    <div>Date: <?=date('F j, Y H:i:s', $arUpdate->message->date)?></div>
+</div>
+<?php endforeach;?>

@@ -1,31 +1,61 @@
 fields:
-    disabled_in_debug:
-        label: Disabled in debug mode
-        comment: If the site working in debug mode, notification will not be sent
-        type: checkbox
-        span: left
-
-    disabled_sending:
-        label: Disabled sending mail to Telegram
-        comment: If checked, email will not be sent
-        type: checkbox
-        span: right
-
     telegram_token:
         label: Bot token
         span: left
 
-    telegram_chat_id:
-        label: User chat id
-        span: right
 
-    strip_eols:
-        label: Strip ends of lines
-        span: auot
-        comment: Make notification mail text compact by stripping ends of lines. That will transform the mail text into one paragraph.
+tabs:
+    fields:
+        disabled_in_debug:
+            label: Disabled in debug mode
+            comment: If the site working in debug mode, notification will not be sent
+            type: checkbox
+            span: left
+            tab: Restrictions
+        disabled_sending:
+            label: Disabled sending mail to Telegram
+            comment: If checked, email will not be sent
+            type: checkbox
+            span: right
+            tab: Restrictions
+        admins_to_send:
+            label: Admins to send mail
+            commentAbove: Mail only to this admins will be sent
+            span: auto
+            type: checkboxlist
+            tab: Restrictions
 
-    admins_to_send:
-        label: Admins to send mail
-        commentAbove: Mail only to this admins will be sent
-        span: auto
-        type: checkboxlist
+        telegram_chat_id:
+            label: User chat id
+            span: right
+            comment: Deprecated! Will be removed in the next version. Use "Telegram User chat ids" instead
+
+        telegram_chat_ids:
+            label: Telegram User chat ids
+            type: repeater
+            span: auto
+            tab: Receivers
+            form:
+                fields:
+                    chat_id:
+                        label: User chat id in Telegram
+                        span: auto
+                        placeholder: Required
+                    name:
+                        label: Person Name
+                        span: auto
+                        placeholder: Can be empty
+        get_updates_log:
+            label: Bot getUpdates log
+            type: partial
+            span: auto
+            path: $/vdomah/mailtelegram/views/get_updates_log.htm
+            tab: Receivers
+            comment: Send message to bot to see your message logs here. You will see your Telegram user ID. Create new "Telegram User chat ids" entry using your ID
+
+        strip_eols:
+            label: Strip ends of lines (\n)
+            span: auto
+            type: checkbox
+            tab: Formatting
+            comment: Make notification mail text compact by stripping ends of lines. That will transform the mail text into one paragraph.
