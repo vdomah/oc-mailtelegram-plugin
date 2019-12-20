@@ -42,7 +42,9 @@ class Plugin extends PluginBase
 
             $sHtml = $obMessage->getBody();
 
-            $sText = $this->clearHTML($sHtml);
+            $sText = $this->clearHTML($sText);
+
+            $sText = preg_replace('/\s+/', ' ', strip_tags($sHtml));
 
             (new Telegram)->sendMessage([
                 'chat_id'    => MailTelegramSettings::instance()->telegram_chat_id,
