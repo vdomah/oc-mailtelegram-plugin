@@ -19,6 +19,11 @@ fields:
         label: User chat id
         span: right
 
+    strip_eols:
+        label: Strip ends of lines
+        span: auot
+        comment: Make notification mail text compact by stripping ends of lines. That will transform the mail text into one paragraph.
+
     admins_to_send:
         label: Admins to send mail
         commentAbove: Mail only to this admins will be sent

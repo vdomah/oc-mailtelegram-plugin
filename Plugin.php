@@ -23,12 +23,9 @@ class Plugin extends PluginBase
     {
         Event::listen('mailer.send', function ($obMailerInstance, $sView, $obMessage) {
             $obSettings = MailTelegramSettings::instance();
+            $bSendIfInDebugMode = config('app.debug') == true && $obSettings->disabled_in_debug == false;
 
-            if ($obSettings->disabled_sending) {
-                return;
-            }
-
-            if (config('app.debug') == true && $obSettings->disabled_in_debug == true) {
+            if ($obSettings->disabled_sending || !$bSendIfInDebugMode) {
                 return;
             }
 
@@ -42,7 +39,7 @@ class Plugin extends PluginBase
 
             $sHtml = $obMessage->getBody();
 
-            $sText = $this->clearHTML($sHtml);
+            $sText = $this->makeTextFromHTML($sHtml, $obSettings->strip_eols);
 
             (new Telegram)->sendMessage([
                 'chat_id'    => MailTelegramSettings::instance()->telegram_chat_id,
@@ -53,36 +50,42 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Убираем пробелы, переносы строк
+     * Strip tags, spaces, ends of lines
      */
-    private function clearHTML($sHtml)
+    private function makeTextFromHTML($sHtml, $bStripEOL = false)
     {
-        $result = [];
+        $arResult = [];
 
+        //Remove style tag with it's content
         $sRegex = '/<style[^>]*>[^<]*<[^>]*>/';
         $sHtml = preg_replace($sRegex, '', $sHtml);
 
         $sText = strip_tags($sHtml);
 
-        $arText = explode("\n", $sText);
+        if ($bStripEOL) {
+            $sText = preg_replace('/\s+/', ' ', $sText);
+        } else {
+            $arText = explode(PHP_EOL, $sText);
 
-        foreach($arText as $sRow)
-        {
-          $sRow = trim ($sRow);
-          if ($sRow != "") {
-            $result[] = $sRow;
-          }
+            foreach($arText as $sRow) {
+                $sRow = trim($sRow);
+                if ($sRow != "") {
+                    $arResult[] = $sRow;
+                }
+            }
+
+            $sText = implode(PHP_EOL, $arResult);
         }
 
-        return implode("\n", $result);
+        return $sText;
     }
 
     public function registerSettings()
     {
         return [
             'settings' => [
-                'label'       => 'vdomah.mailtelegram::lang.settings.settings_label',
-                'description' => 'vdomah.mailtelegram::lang.settings.settings_desc',
+                'label'       => 'vdomah.mailtelegram::lang.strings.settings_label',
+                'description' => 'vdomah.mailtelegram::lang.strings.settings_desc',
                 'category'    => SettingsManager::CATEGORY_NOTIFICATIONS,
                 'icon'        => 'icon-envelope-o',
                 'class'       => 'Vdomah\MailTelegram\Models\Settings',
