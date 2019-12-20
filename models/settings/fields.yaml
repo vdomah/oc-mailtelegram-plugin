@@ -3,6 +3,11 @@ fields:
         label: Bot token
         span: left
 
+    telegram_chat_id:
+        label: User chat id
+        span: right
+        comment: Deprecated! Will be removed in the next version. Use "Telegram User chat ids" in Receivers tab instead
+
 
 tabs:
     fields:
@@ -24,11 +29,6 @@ tabs:
             span: auto
             type: checkboxlist
             tab: Restrictions
-
-        telegram_chat_id:
-            label: User chat id
-            span: right
-            comment: Deprecated! Will be removed in the next version. Use "Telegram User chat ids" instead
 
         telegram_chat_ids:
             label: Telegram User chat ids
