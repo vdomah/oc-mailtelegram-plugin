@@ -11,8 +11,8 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'Mail Telegram',
-            'description' => 'Send site mail to your Telegram via bot',
+            'name'        => 'vdomah.mailtelegram::lang.plugin.name',
+            'description' => 'vdomah.mailtelegram::lang.plugin.description',
             'author'      => 'Art Gek',
             'icon'        => 'icon-envelope-o',
             'homepage'    => 'https://github.com/vdomah/oc-mailtelegram-plugin',
@@ -98,8 +98,8 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label'       => 'vdomah.mailtelegram::lang.strings.settings_label',
-                'description' => 'vdomah.mailtelegram::lang.strings.settings_desc',
+                'label'       => 'vdomah.mailtelegram::lang.settings.label',
+                'description' => 'vdomah.mailtelegram::lang.settings.description',
                 'category'    => SettingsManager::CATEGORY_NOTIFICATIONS,
                 'icon'        => 'icon-envelope-o',
                 'class'       => 'Vdomah\MailTelegram\Models\Settings',
