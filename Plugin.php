@@ -43,22 +43,12 @@ class Plugin extends PluginBase
 
             $obTelegram = (new Telegram);
 
-            if ($obSettings->telegram_chat_id) {
+            foreach ($obSettings->telegram_chat_ids as $telegram_chat_id) {
                 $obTelegram->sendMessage([
-                    'chat_id'    => $obSettings->telegram_chat_id,
+                    'chat_id'    => $telegram_chat_id['chat_id'],
                     'text'       => $sText,
                     'parse_mode' => 'HTML',
                 ]);
-            }
-
-            foreach ($obSettings->telegram_chat_ids as $telegram_chat_id) {
-
-                if ($obSettings->telegram_chat_id != $telegram_chat_id['chat_id'])
-                    $obTelegram->sendMessage([
-                        'chat_id'    => $telegram_chat_id['chat_id'],
-                        'text'       => $sText,
-                        'parse_mode' => 'HTML',
-                    ]);
             }
         });
     }
