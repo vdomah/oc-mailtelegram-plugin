@@ -8,7 +8,7 @@ Mail Telegram plugin allows to receive site mail to your telegram account via bo
 Using the Laravel’s CLI is the fastest way to get started. Just run the following commands in a project’s root directory:
 
 ```bash
-php artisan plugin:install vdomah.mailtlegram
+php artisan plugin:install vdomah.mailtelegram
 ```
 
 ## Documentation
