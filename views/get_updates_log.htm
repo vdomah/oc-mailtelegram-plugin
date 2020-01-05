@@ -3,7 +3,10 @@
 <?php
 $arResp = json_decode($sResp);
 ?>
-<?php foreach ($arResp->result as $arUpdate): if ($arUpdate->message->from->is_bot) continue;?>
+<?php foreach ($arResp->result as $arUpdate):
+if (!property_exists($arUpdate, 'message') || $arUpdate->message->from->is_bot):?>
+<?php var_dump($arUpdate);?>
+<?php else:?>
 <div>
     <div>User or chat ID: <strong><?=$arUpdate->message->chat->id?></strong></div>
     <div>First name: <?=$arUpdate->message->chat->first_name?></div>
@@ -11,5 +14,6 @@ $arResp = json_decode($sResp);
     <div>Username: <?=$arUpdate->message->chat->username?></div>
     <div>Date: <?=date('F j, Y H:i:s', $arUpdate->message->date)?></div>
 </div>
+<?php endif;?>
 <?php endforeach;?>
 <?php endif;?>

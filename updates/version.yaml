@@ -1,3 +1,4 @@
 1.0.0: First version of MailTelgram
 1.0.1: !!! Multiple receivers in Telegram now possible ("telegram chat id" field - deprecated); getUpdates log in settings; optional compressing text into one paragraph.
 1.0.2: Removed test bot token from get_updates_log
+1.0.3: !!! telegram_chat_id field removed, use telegram_chat_ids instead. Untypical response handled in get_updates_log using var_dump.
