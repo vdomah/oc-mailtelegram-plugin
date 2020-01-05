@@ -1,8 +1,12 @@
 <?php
 
 return [
+    'plugin'   => [
+        'name'        => 'Mail Telegram',
+        'description' => 'Send site mail to your Telegram via bot',
+    ],
     'settings' => [
-        'settings_label' => 'Пошта в Telegram',
-        'settings_desc' => 'Налаштування відправка пошти в Telegram',
+        'label'       => 'Пошта в Telegram',
+        'description' => 'Налаштування відправка пошти в Telegram',
     ],
 ];
