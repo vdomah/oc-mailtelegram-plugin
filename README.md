@@ -38,7 +38,7 @@ You can disable telegram notifications at all.
 #### Admins to send mail
 If you check admin1 - only those mail that has "To" parameter set to admin1's e-mail will be sent to the Telegram chat.
 
-###Formatting tab
+### Formatting tab
 #### Strip ends of lines
 Make notification mail text compact by stripping ends of lines. That will transform the mail text into one paragraph.
 
