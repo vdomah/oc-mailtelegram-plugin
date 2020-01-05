@@ -27,6 +27,21 @@ Don't forget to replace {{token}} with your bot token.
 
 Enter this token and chat id into plugin settings. That is all, have a nice experience with this plugin!
 
+### Other settings
+
+#### Disabled in debug
+You can disable telegram notifications in debug mode.
+
+#### Disabled sending mail to Telegram
+You can disable telegram notifications at all.
+
+#### Admins to send mail
+If you check admin1 - only those mail that has "To" parameter set to admin1's e-mail will be sent to the Telegram chat.
+
+###Formatting tab
+#### Strip ends of lines
+Make notification mail text compact by stripping ends of lines. That will transform the mail text into one paragraph.
+
 ## License
 
 © 2019, [Art Gek](https://github.com/vdomah) under [GNU GPL v3](https://opensource.org/licenses/GPL-3.0).
