@@ -19,7 +19,7 @@ Full documentation about telegram bots, you can see here: https://core.telegram.
 Create bot by @BotFather. Bot token will look like 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
 
 ### Get user chat id
-For getting user chat id - write any message to bot or just click Start, and open the following url in your browser:
+For getting user chat id - write any message to bot or just click Start. Then you can go to Mail Telegram settings and in Receivers tab you'll see your telegram user ID. Second way you can get your user's ID - open the following url in your browser:
 
 https://api.telegram.org/bot{{token}}/getUpdates
 
