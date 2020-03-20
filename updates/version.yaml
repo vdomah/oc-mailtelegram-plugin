@@ -4,3 +4,4 @@
 1.0.3: !!! telegram_chat_id field removed, use telegram_chat_ids instead. Untypical response handled in get_updates_log using var_dump.
 1.0.4: Fixed telegram_chat_id field bug after the field was removed.
 1.0.5: Check if message's chat object exists and got properties required to display Updates log in settings.
+1.0.6: Fix typo in Updates log in settings.

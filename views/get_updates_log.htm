@@ -9,10 +9,10 @@ if (!property_exists($arUpdate, 'message') || $arUpdate->message->from->is_bot):
 <?php else:?>
 <div>
     <?php if ($arUpdate->message->chat): ?>
-        <div>User or chat ID: <strong><?=(property_exists($arUpdate->message->chat, 'id') ? $arUpdate->message->chat->id : ''?></strong></div>
-        <div>First name: <?=(property_exists($arUpdate->message->chat, 'first_name') ? $arUpdate->message->chat->first_name : ''?></div>
-        <div>Last name: <?=(property_exists($arUpdate->message->chat, 'last_name') ? $arUpdate->message->chat->last_name : ''?></div>
-        <div>Username: <?=(property_exists($arUpdate->message->chat, 'username') ? $arUpdate->message->chat->username : ''?></div>
+        <div>User or chat ID: <strong><?=(property_exists($arUpdate->message->chat, 'id') ? $arUpdate->message->chat->id : '')?></strong></div>
+        <div>First name: <?=(property_exists($arUpdate->message->chat, 'first_name') ? $arUpdate->message->chat->first_name : '')?></div>
+        <div>Last name: <?=(property_exists($arUpdate->message->chat, 'last_name') ? $arUpdate->message->chat->last_name : '')?></div>
+        <div>Username: <?=(property_exists($arUpdate->message->chat, 'username') ? $arUpdate->message->chat->username : '')?></div>
         <div>Date: <?=date('F j, Y H:i:s', $arUpdate->message->date)?></div>
     <?php else: ?>
         <div>Chat: <?php var_dump($arUpdate->message->chat);?></div>
