@@ -6,3 +6,4 @@
 1.0.5: Check if message's chat object exists and got properties required to display Updates log in settings.
 1.0.6: Fix typo in Updates log in settings.
 1.0.7: Fix error when telegram_chat_ids is empty.
+1.0.8: Fix not sending if app.debug==false. Formwidget Updates log. Refactor code from Plugin.php to Helper.

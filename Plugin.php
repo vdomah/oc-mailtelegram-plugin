@@ -1,8 +1,8 @@
 <?php namespace Vdomah\MailTelegram;
 
 use Event;
-use Vdomah\MailTelegram\Classes\Telegram;
-use Vdomah\MailTelegram\Models\Settings as MailTelegramSettings;
+use Vdomah\MailTelegram\Classes\Helper;
+use Vdomah\MailTelegram\FormWidgets\BotLog;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
 
@@ -22,68 +22,8 @@ class Plugin extends PluginBase
     public function boot()
     {
         Event::listen('mailer.send', function ($obMailerInstance, $sView, $obMessage) {
-            $obSettings = MailTelegramSettings::instance();
-            $bSendIfInDebugMode = config('app.debug') == true && $obSettings->disabled_in_debug == false;
-
-            if ($obSettings->disabled_sending || !$bSendIfInDebugMode) {
-                return;
-            }
-
-            if (!empty($obSettings->admins_to_send)) {
-                foreach ($obMessage->getTo() as $sEmail=>$sName) {
-                    if (!in_array($sEmail, $obSettings->admins_to_send)) {
-                        return;
-                    }
-                }
-            }
-
-            $sHtml = $obMessage->getBody();
-
-            $sText = $this->makeTextFromHTML($sHtml, $obSettings->strip_eols);
-
-            $obTelegram = (new Telegram);
-
-            if (is_array($obSettings->telegram_chat_ids)) {
-                foreach ($obSettings->telegram_chat_ids as $telegram_chat_id) {
-                    $obTelegram->sendMessage([
-                        'chat_id'    => $telegram_chat_id['chat_id'],
-                        'text'       => $sText,
-                        'parse_mode' => 'HTML',
-                    ]);
-                }
-            }
+            Helper::instance()->send($obMessage);
         });
-    }
-
-    /**
-     * Strip tags, spaces, ends of lines
-     */
-    private function makeTextFromHTML($sHtml, $bStripEOL = false)
-    {
-        $arResult = [];
-
-        //Remove style tag with it's content
-        $sRegex = '/<style[^>]*>[^<]*<[^>]*>/';
-        $sHtml = preg_replace($sRegex, '', $sHtml);
-
-        $sText = strip_tags($sHtml);
-
-        if ($bStripEOL) {
-            $sText = preg_replace('/\s+/', ' ', $sText);
-        } else {
-            $arText = explode(PHP_EOL, $sText);
-
-            foreach($arText as $sRow) {
-                $sRow = trim($sRow);
-                if ($sRow != "") {
-                    $arResult[] = $sRow;
-                }
-            }
-
-            $sText = implode(PHP_EOL, $arResult);
-        }
-
-        return $sText;
     }
 
     public function registerSettings()
@@ -96,6 +36,16 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-envelope-o',
                 'class'       => 'Vdomah\MailTelegram\Models\Settings',
                 'order'       => 500,
+            ],
+        ];
+    }
+
+    public function registerFormWidgets()
+    {
+        return [
+            BotLog::class => [
+                'label' => 'Bot Log',
+                'code'  => 'botlog'
             ],
         ];
     }

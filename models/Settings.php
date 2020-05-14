@@ -11,6 +11,8 @@ class Settings extends Model
     public $settingsCode = 'mail_telegram_settings';
     public $settingsFields = 'fields.yaml';
 
+    //public $jsonable = ['telegram_chat_ids'];
+
     public function initSettingsData()
     {
         $this->disabled_in_debug = false;
