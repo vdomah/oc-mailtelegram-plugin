@@ -2,18 +2,15 @@
 
 use Exception;
 use Backend\Classes\FormWidgetBase;
-use RainLab\Translate\Models\Locale as LocaleModel;
-use Backend\Classes\FormField;
 
 /**
  * Widget to create set of translatable fields grouped into language tabs.
  *
- * @package vdomah\translatetabs
+ * @package vdomah\mailtelegram
  * @author Art Gek
  */
 class BotLog extends FormWidgetBase
 {
-
     /**
      * @var array Form field configuration
      */
@@ -43,7 +40,6 @@ class BotLog extends FormWidgetBase
 
         $this->bindToController();
 
-        //$this->viewPathBackend = base_path() . '/modules/backend/widgets/form/partials/';
         $this->viewPathWidget = 'vdomah/mailtelegram/formwidgets/botlog/partials/';
     }
 
