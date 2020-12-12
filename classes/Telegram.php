@@ -6,7 +6,11 @@ class Telegram extends Gateway
 {
     public function __construct($arOptions = [])
     {
-        $sToken = MailTelegramSettings::get('telegram_token');
+        if (isset($arOptions['telegram_token'])) {
+            $sToken = $arOptions['telegram_token'];
+        } else {
+            $sToken = MailTelegramSettings::get('telegram_token');
+        }
 
         $this->sName = 'telegram';
 
@@ -20,7 +24,7 @@ class Telegram extends Gateway
         $this->sApiUrl = "{$this->sProtoPart}://{$this->sHost}{$this->sPortPart}/bot{$sToken}";
     }
 
-    protected function request($sMethod, $arParams = [])
+    public function request($sMethod, $arParams = [])
     {
         $sUrl = $this->sApiUrl . '/' . $sMethod;
         $sQuery = http_build_query($arParams);
