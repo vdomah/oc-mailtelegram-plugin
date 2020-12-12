@@ -42,6 +42,13 @@ If you check admin1 - only those mail that has "To" parameter set to admin1's e-
 #### Strip ends of lines
 Make notification mail text compact by stripping ends of lines. That will transform the mail text into one paragraph.
 
+### Send messages to several bots.
+In your plugin you can create your own Telegram objects with other telegram tokens.
+Then use the logic from classes/Helper class - send method. Just copy the code, ajust it and send messages your way.
+````
+$obTelegram = (new Telegram(['telegram_token' => $sToken]));
+````
+
 ## License
 
 © 2019, [Art Gek](https://github.com/vdomah) under [GNU GPL v3](https://opensource.org/licenses/GPL-3.0).

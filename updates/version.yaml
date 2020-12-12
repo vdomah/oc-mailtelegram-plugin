@@ -7,3 +7,4 @@
 1.0.6: Fix typo in Updates log in settings.
 1.0.7: Fix error when telegram_chat_ids is empty.
 1.0.8: Fix not sending if app.debug==false. Formwidget Updates log. Refactor code from Plugin.php to Helper.
+1.0.9: Ability to define telegram_token while instanciating Telegram object (overrides token from settings).
