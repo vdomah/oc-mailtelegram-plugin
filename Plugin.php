@@ -5,6 +5,7 @@ use Vdomah\MailTelegram\Classes\Helper;
 use Vdomah\MailTelegram\FormWidgets\BotLog;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
+use Vdomah\MailTelegram\Models\Settings as MailTelegramSettings;
 
 class Plugin extends PluginBase
 {
@@ -21,8 +22,12 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        Event::listen('mailer.send', function ($obMailerInstance, $sView, $obMessage) {
+        Event::listen('mailer.prepareSend', function ($obMailerInstance, $sView, $obMessage) {
             Helper::instance()->send($obMessage);
+
+            if (MailTelegramSettings::get('prevent_mail_sending', false)) {
+                return false;
+            }
         });
     }
 

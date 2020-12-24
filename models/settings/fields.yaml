@@ -13,7 +13,13 @@ tabs:
             tab: Restrictions
         disabled_sending:
             label: Disabled sending mail to Telegram
-            comment: If checked, email will not be sent
+            comment: If checked, email to Telegram will not be sent
+            type: checkbox
+            span: right
+            tab: Restrictions
+        prevent_mail_sending:
+            label: Don't send email to mailboxes
+            comment: If checked, email to mailboxes will not be sent. If you want to receive messages only in Telegram and not in actual mailboxes.
             type: checkbox
             span: right
             tab: Restrictions
