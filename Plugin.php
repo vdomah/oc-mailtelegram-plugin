@@ -54,4 +54,14 @@ class Plugin extends PluginBase
             ],
         ];
     }
+
+    public function registerPermissions()
+    {
+        return [
+            'vdomah.mailtelegram.access_settings' => [
+                'tab' => 'vdomah.mailtelegram::lang.plugin.name',
+                'label' => 'vdomah.mailtelegram::lang.permissions.access_settings'
+            ],
+        ];
+    }
 }

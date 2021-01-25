@@ -9,4 +9,7 @@ return [
         'label'       => 'Mail Telegram',
         'description' => 'Configure sending site email to Telegram',
     ],
+    'permissions' => [
+        'access_settings' => 'Access to Mail Telegram settings',
+    ],
 ];
