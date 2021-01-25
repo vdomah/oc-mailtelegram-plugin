@@ -10,3 +10,4 @@
 1.0.9: Ability to define telegram_token while instanciating Telegram object (overrides token from settings).
 1.0.10: Ability to prevent email sending to mailboxes (to send it only to Telegram chat).
 1.0.11: Permission to restrict access to Mail Telegram settings.
+1.0.12: Instructions to use @getidsbot for obtaining telegram user id.

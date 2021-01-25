@@ -50,7 +50,7 @@ tabs:
             type: botlog
             span: auto
             tab: Receivers
-            comment: Send message to bot to see your message logs here. You will see your Telegram user ID. Create new "Telegram User chat ids" entry using your ID. If see an error log here, try to get your Telegram id in other way.
+            comment: Send message to bot to see your message logs here. You will see your Telegram user ID. Create new "Telegram User chat ids" entry using your ID. If see an error log here, try to get your Telegram id in other way, for example, use @getidsbot.
 
         strip_eols:
             label: Strip ends of lines (\n)
