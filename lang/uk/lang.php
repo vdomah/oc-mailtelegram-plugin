@@ -9,4 +9,7 @@ return [
         'label'       => 'Пошта в Telegram',
         'description' => 'Налаштування відправка пошти в Telegram',
     ],
+    'permissions' => [
+        'access_settings' => 'Доступ до налаштувань Mail Telegram',
+    ],
 ];
