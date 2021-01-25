@@ -41,6 +41,7 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-envelope-o',
                 'class'       => 'Vdomah\MailTelegram\Models\Settings',
                 'order'       => 500,
+                'permissions' => ['vdomah.mailtelegram.access_settings'],
             ],
         ];
     }
